@@ -1,0 +1,32 @@
+grammar RuleGrammar
+
+  rule inference_rule
+    nt_symbol space? assign_symbol space? body <InferenceRule>
+  end
+
+  rule body
+    ( t_symbol / nt_symbol / space )* <Body>
+  end
+
+  rule t_symbol
+    [a-z]+ <TSymbol>
+  end
+
+  rule nt_symbol
+    [A-Z]+ <NTSymbol>
+  end
+
+  rule assign_symbol
+    ( '::=' / '->' )
+  end
+
+  rule rule_separator
+    [\n;] 
+  end
+
+  rule space
+    [\s\t]+
+  end
+
+end
+ 
