@@ -1,11 +1,19 @@
 grammar RuleGrammar
 
+ rule formal_grammar
+   grammar_identifier ':' space? newline ( inference_rule ';' newline )+ 'end' newline+ <FormalGrammar>
+ end
+
   rule inference_rule
-    nt_symbol space? assign_symbol space? body probability? <InferenceRule>
+    tab? nt_symbol space assign_symbol space body probability? <InferenceRule>
   end
 
   rule body
     ( t_symbol / nt_symbol / space )* <Body>
+  end
+
+  rule grammar_identifier
+    [a-zA-Z0-9_]+ <GrammarIdentifier>
   end
 
   rule t_symbol
@@ -25,8 +33,15 @@ grammar RuleGrammar
   end
 
   rule space
-    [\s\t]+
+    [\s]
   end
 
+  rule tab
+    "    " / "  " / [\t]
+  end
+
+  rule newline
+    [\n]
+  end
 end
  
