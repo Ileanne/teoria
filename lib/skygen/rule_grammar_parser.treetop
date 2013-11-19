@@ -1,7 +1,7 @@
 grammar RuleGrammar
 
   rule inference_rule
-    nt_symbol space? assign_symbol space? body <InferenceRule>
+    nt_symbol space? assign_symbol space? body probability? <InferenceRule>
   end
 
   rule body
@@ -16,12 +16,12 @@ grammar RuleGrammar
     [A-Z]+ <NTSymbol>
   end
 
-  rule assign_symbol
-    ( '::=' / '->' )
+  rule probability
+    [0-9]+ '.' [0-9]+ <Probability>
   end
 
-  rule rule_separator
-    [\n;] 
+  rule assign_symbol
+    ( '::=' / '->' )
   end
 
   rule space

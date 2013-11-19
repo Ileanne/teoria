@@ -7,7 +7,7 @@ class Parser
          File.dirname(__FILE__), 'rule_grammar_parser.treetop')))
   @@parser = RuleGrammarParser.new
   
-  def self.parse_grammar(data)
+  def self.parse(data)
     tree = @@parser.parse(data)
     if tree.nil?
       raise Exception, "Parse error at offset: #{@@parser.index}" 
@@ -26,6 +26,6 @@ class Parser
     root_node.elements.each {|node| self.clean_tree(node)}
   end
 end
-puts Parser.parse_grammar('S ::= B r B').inspect
+puts Parser.parse('S ::= B r B 0.5').inspect
 
-puts Parser.parse_grammar('S ::= B r B').to_array.inspect
+puts Parser.parse('S ::= B r B').to_array.inspect

@@ -24,4 +24,10 @@ module RuleGrammar
     end
   end
 
+  class Probability < Treetop::Runtime::SyntaxNode
+    def to_array
+      return self.text_value.to_f
+    end
+  end
+
 end
